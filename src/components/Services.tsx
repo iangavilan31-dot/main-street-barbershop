@@ -65,7 +65,7 @@ export default function Services() {
                     <div className="chalk-meta-row">
                       <span>{s.duration}</span>
                       <span className="chalk-divider" />
-                      <a href="#visit" className="chalk-link">
+                      <a href="#contact" className="chalk-link">
                         {t("bookChairBtn")}
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M5 12h14M13 5l7 7-7 7" />

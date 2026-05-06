@@ -6,7 +6,7 @@ import Story from "./components/Story";
 import Services from "./components/Services";
 import Team from "./components/Team";
 import Gallery from "./components/Gallery";
-import Reviews from "./components/Reviews";
+import Contact from "./components/Contact";
 import Visit from "./components/Visit";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
@@ -36,8 +36,8 @@ function Inner() {
     services: <Services />,
     team: <Team />,
     gallery: <Gallery />,
-    reviews: <Reviews />,
     visit: <Visit />,
+    contact: <Contact />,
     footer: <Footer />,
   };
   if (only && SECTIONS[only]) {
@@ -61,8 +61,8 @@ function Inner() {
         <Services />
         <Team />
         <Gallery />
-        <Reviews />
         <Visit />
+        <Contact />
       </main>
       <Footer />
     </div>

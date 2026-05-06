@@ -10,6 +10,7 @@ export const T: Dict = {
   navTeam: { EN: "Barbers", ES: "Barberos" },
   navGallery: { EN: "Gallery", ES: "Galería" },
   navVisit: { EN: "Visit", ES: "Visítanos" },
+  navContact: { EN: "Contact", ES: "Contacto" },
   bookChair: { EN: "Book a Chair", ES: "Reserva tu silla" },
   reserveChair: { EN: "Reserve a chair", ES: "Reserva una silla" },
   theMenu: { EN: "The menu", ES: "El menú" },

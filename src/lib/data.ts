@@ -143,4 +143,5 @@ export const NAV = [
   { href: "#team", label: "Barbers" },
   { href: "#gallery", label: "Gallery" },
   { href: "#visit", label: "Visit" },
+  { href: "#contact", label: "Contact" },
 ];

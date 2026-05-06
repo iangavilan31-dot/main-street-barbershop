@@ -21,6 +21,7 @@ export default function Nav() {
     "#team": "navTeam",
     "#gallery": "navGallery",
     "#visit": "navVisit",
+    "#contact": "navContact",
   };
 
   useEffect(() => {
@@ -73,7 +74,7 @@ export default function Nav() {
           >
             {SHOP.phone}
           </a>
-          <a href="#visit" className="btn-primary !py-3 !px-5 text-[11px]">
+          <a href="#contact" className="btn-primary !py-3 !px-5 text-[11px]">
             <span>{t("bookChair")}</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M13 5l7 7-7 7" />
