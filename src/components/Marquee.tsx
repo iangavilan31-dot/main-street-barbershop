@@ -9,7 +9,7 @@ export default function Marquee() {
       <div className="marquee-track animate-marquee">
         {[...items, ...items, ...items].map((it, i) => (
           <div key={i} className="flex items-center gap-7 px-7 whitespace-nowrap">
-            <span className="font-display italic text-[clamp(1.2rem,2vw,1.7rem)] text-bone/85 leading-none">
+            <span className="font-display font-light text-[clamp(1rem,1.6vw,1.4rem)] text-bone/70 leading-none tracking-tight uppercase">
               {it}
             </span>
             {i % 3 === 0 ? (

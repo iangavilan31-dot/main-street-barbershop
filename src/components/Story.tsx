@@ -28,7 +28,7 @@ export default function Story() {
 
           {/* About copy */}
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-4">
-            <h2 className="font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal">
+            <h2 className="font-display font-light text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.25] tracking-tight reveal">
               {t("storyHeadingPart1")} {t("storyShowingUp")} {t("storyHeadingPart2")}
             </h2>
 

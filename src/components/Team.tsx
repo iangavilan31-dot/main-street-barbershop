@@ -25,11 +25,8 @@ export default function Team() {
             <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/65">
               {t("teamEyebrow")}
             </div>
-            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
-              {t("teamHeading1")}{" "}
-              <span className="italic font-normal text-bone/85" style={{ fontFamily: '"Instrument Serif", serif' }}>
-                {t("teamHeading2")}
-              </span>
+            <h2 className="mt-4 font-display font-light text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.25] tracking-tight reveal max-w-xl">
+              {t("teamHeading1")} {t("teamHeading2")}
             </h2>
           </div>
           <div className="lg:col-span-4 lg:col-start-9">

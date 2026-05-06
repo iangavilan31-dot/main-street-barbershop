@@ -12,11 +12,8 @@ export default function Reviews() {
             <div className="font-mono text-[11px] uppercase tracking-widestest text-ink/55">
               {t("reviewsEyebrow")}
             </div>
-            <h2 className="mt-4 font-display font-medium text-ink text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
-              {t("reviewsHeading1")}{" "}
-              <span className="italic font-normal" style={{ fontFamily: '"Instrument Serif", serif' }}>
-                {t("reviewsHeading2")}
-              </span>
+            <h2 className="mt-4 font-display font-light text-ink text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.25] tracking-tight reveal max-w-xl">
+              {t("reviewsHeading1")} {t("reviewsHeading2")}
             </h2>
           </div>
           <div className="lg:col-span-4 lg:col-start-9">
@@ -44,7 +41,7 @@ export default function Reviews() {
               className="bg-white border border-ink/12 p-8 lg:p-9 reveal"
               data-delay={i * 100}
             >
-              <blockquote className="text-ink text-[15px] lg:text-[16px] leading-[1.6] text-balance" style={{ fontFamily: '"Instrument Serif", serif' }}>
+              <blockquote className="text-ink text-[14px] lg:text-[15px] leading-[1.65] text-balance font-light tracking-tight">
                 "{r.quote}"
               </blockquote>
               <figcaption className="mt-7 flex items-center justify-between font-mono text-[10px] uppercase tracking-widestest text-ink/55">
