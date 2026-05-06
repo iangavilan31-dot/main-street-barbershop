@@ -295,39 +295,61 @@ button { font-family: inherit; }
 .text-chalk\/45 { color: rgba(244, 236, 217, 0.45); }
 
 .chalkboard {
-  background-color: #0a0a0a;
+  background-color: #141c18;
   background-image:
-    /* Heavy uniform darkening so the photo doesn't bloom in the center */
-    linear-gradient(rgba(10,10,10,0.78), rgba(10,10,10,0.78)),
+    /* Edge vignette — corners stay near-black, center lets the board breathe */
+    radial-gradient(ellipse 80% 68% at 50% 50%, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.82) 100%),
+    /* Chalkboard green-black tint so texture reads as a real board */
+    linear-gradient(160deg, rgba(18,26,22,0.42) 0%, rgba(10,16,14,0.52) 100%),
     url("/texture-chalkboard.jpg");
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
   position: relative;
   isolation: isolate;
 }
 .chalkboard::before {
-  /* Subtle cinematic noise */
+  /* Chalk-dust grain — warm, slightly cream-tinted noise */
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.93  0 0 0 0 0.85  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.14;
   mix-blend-mode: overlay;
   pointer-events: none;
+  z-index: 0;
 }
 .chalkboard::after {
-  /* Edge vignette pushing the corners to true ink so the section blends into adjacent sections */
+  /* Inset shadow so the board feels physically recessed inside its frame */
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 95% 70% at 50% 50%, transparent 30%, rgba(0,0,0,0.95) 100%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.55), inset 0 0 160px rgba(0,0,0,0.28);
   pointer-events: none;
+  z-index: 0;
+}
+
+/* Wooden frame around the menu content */
+.chalkboard-frame {
+  box-shadow:
+    inset 0 0 0 1px rgba(244,236,217,0.10),   /* chalk-dust inner edge */
+    0 0 0 2px rgba(90,62,22,0.75),             /* wood grain face */
+    0 0 0 12px rgba(12,8,3,0.96),              /* dark wood mass */
+    0 0 0 14px rgba(70,48,16,0.55),            /* outer wood highlight */
+    0 0 0 16px rgba(8,5,2,0.92),              /* hard outer edge */
+    0 48px 96px rgba(0,0,0,0.85);             /* drop shadow beneath board */
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .chalk-h {
-  text-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  text-shadow:
+    0 0 18px rgba(244,236,217,0.18),
+    0 1px 0 rgba(255,255,255,0.06),
+    1px 0 0 rgba(244,236,217,0.06),
+    -1px 0 0 rgba(244,236,217,0.06);
   letter-spacing: 0.005em;
 }
 
@@ -380,7 +402,12 @@ button { font-family: inherit; }
   line-height: 1;
   letter-spacing: -0.005em;
   color: var(--chalk);
-  text-shadow: 0 0 0.4px rgba(244, 236, 217, 0.55);
+  text-shadow:
+    0 0 0.4px rgba(244,236,217,0.55),
+    0 0 14px rgba(244,236,217,0.12),
+    1px 0 0 rgba(244,236,217,0.07),
+    -1px 0 0 rgba(244,236,217,0.07),
+    0 1px 0 rgba(244,236,217,0.05);
 }
 .chalk-dots {
   flex: 1;
@@ -399,6 +426,10 @@ button { font-family: inherit; }
   line-height: 1;
   color: var(--chalk);
   letter-spacing: -0.01em;
+  text-shadow:
+    0 0 12px rgba(244,236,217,0.15),
+    1px 0 0 rgba(244,236,217,0.07),
+    -1px 0 0 rgba(244,236,217,0.07);
 }
 .chalk-arrow {
   display: inline-flex;
