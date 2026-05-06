@@ -6,14 +6,14 @@ export default {
       colors: {
         // Logo-matched: black / cream / charcoal — pure B&W with one whisper of warmth
         ink: {
-          DEFAULT: "#0A0A0A",
-          950: "#070707",
-          900: "#0A0A0A",
-          800: "#121212",
-          700: "#1A1A1A",
-          600: "#2A2A2A",
-          500: "#3A3A3A",
-          400: "#5A5A5A",
+          DEFAULT: "#0d0e10",
+          950: "#08080a",
+          900: "#0d0e10",
+          800: "#141518",
+          700: "#1a1b1e",
+          600: "#2a2b2f",
+          500: "#3a3b3f",
+          400: "#5a5b5f",
         },
         bone: {
           DEFAULT: "#EFE9DD",
