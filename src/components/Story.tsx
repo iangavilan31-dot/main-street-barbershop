@@ -1,64 +1,63 @@
 import { useI18n } from "../lib/i18n";
+import { Flourish } from "./Ornaments";
 
 /**
- * Story — kept deliberately simple.
- * One large image of the shop, one font, About-style copy.
- * Drop your own image at /public/storefront.jpg to replace.
+ * Story — quiet, premium, animated.
+ * No photo, no body wall. Just an eyebrow, a word-by-word heading,
+ * a thin flourish, one short line, and three small inline numbers.
  */
 export default function Story() {
   const { t } = useI18n();
+
+  // Build the headline as discrete words for per-word stagger
+  const headingWords = `${t("storyHeadingPart1")} ${t("storyShowingUp")} ${t("storyHeadingPart2")}`
+    .split(" ")
+    .filter(Boolean);
+
   return (
-    <section id="story" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
-      <div className="max-w-[1180px] mx-auto px-6 lg:px-10">
-        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55 mb-10 reveal">
+    <section
+      id="story"
+      className="relative w-full bg-ink py-32 lg:py-44 overflow-hidden"
+    >
+      <div className="max-w-[920px] mx-auto px-6 lg:px-10 text-center">
+        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55 reveal">
           {t("storyEyebrow")}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Image — slimmer column, no longer half page */}
-          <div className="lg:col-span-5 reveal">
-            <div className="relative aspect-[4/5] overflow-hidden bg-ink-700">
-              <img
-                src="/storefront.jpg"
-                alt="Main Street Barbershop, Bergenfield NJ"
-                className="w-full h-full object-cover grayscale contrast-[1.05]"
-              />
-            </div>
-          </div>
+        <h2 className="story-h reveal mt-10 font-display font-light text-bone-100 leading-[1.18] tracking-tight text-[clamp(1.5rem,3.0vw,2.4rem)]">
+          {headingWords.map((w, i) => (
+            <span key={i} className="story-word inline-block">
+              {w}
+              {i < headingWords.length - 1 ? " " : ""}
+            </span>
+          ))}
+        </h2>
 
-          {/* About copy */}
-          <div className="lg:col-span-6 lg:col-start-7 lg:pt-4">
-            <h2 className="font-display font-light text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.25] tracking-tight reveal">
-              {t("storyHeadingPart1")} {t("storyShowingUp")} {t("storyHeadingPart2")}
-            </h2>
+        <Flourish className="story-flourish reveal mx-auto mt-12 w-[180px] text-bone/35" data-delay="350" />
 
-            <div className="mt-7 space-y-5 reveal" data-delay="120">
-              <p className="text-bone/72 text-[14px] leading-[1.75]">
-                {t("storyP1")}
-              </p>
-              <p className="text-bone/72 text-[14px] leading-[1.75]">
-                {t("storyP2")}
-              </p>
-            </div>
+        <p className="story-line reveal mt-10 text-bone/65 text-[14px] leading-[1.7] max-w-[36ch] mx-auto" data-delay="500">
+          One rule, taped to the mirror in 2004:
+          treat the chair like a sermon, not a shift.
+        </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 reveal" data-delay="240">
-              {[
-                ["21", "Years on Main"],
-                ["120k", "Cuts delivered"],
-                ["04", "Master barbers"],
-                ["5.0★", "700+ reviews"],
-              ].map(([num, label]) => (
-                <div key={label} className="border-t border-bone/15 pt-3">
-                  <div className="font-display text-bone-100 text-[28px] font-medium leading-none">
-                    {num}
-                  </div>
-                  <div className="font-mono text-[10px] uppercase tracking-widestest text-bone/50 mt-2">
-                    {label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div
+          className="story-stats reveal mt-16 flex items-baseline justify-center gap-8 sm:gap-12 text-bone/50 font-mono text-[10px] uppercase tracking-widestest"
+          data-delay="700"
+        >
+          <span className="flex flex-col items-center gap-1.5">
+            <span className="story-stat-num font-display text-bone-100 text-[26px] sm:text-[30px] font-light leading-none tracking-tight">21</span>
+            <span>Years</span>
+          </span>
+          <span className="text-bone/20 text-[18px] -mt-1">·</span>
+          <span className="flex flex-col items-center gap-1.5">
+            <span className="story-stat-num font-display text-bone-100 text-[26px] sm:text-[30px] font-light leading-none tracking-tight">120k</span>
+            <span>Cuts</span>
+          </span>
+          <span className="text-bone/20 text-[18px] -mt-1">·</span>
+          <span className="flex flex-col items-center gap-1.5">
+            <span className="story-stat-num font-display text-bone-100 text-[26px] sm:text-[30px] font-light leading-none tracking-tight">04</span>
+            <span>Chairs</span>
+          </span>
         </div>
       </div>
     </section>

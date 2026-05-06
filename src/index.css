@@ -586,6 +586,43 @@ button { font-family: inherit; }
   color: rgba(239, 233, 221, 0.45);
 }
 
+/* ========== STORY — per-word heading stagger + flourish draw ========== */
+.story-h .story-word {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.95s cubic-bezier(.16,1,.3,1),
+              transform 0.95s cubic-bezier(.16,1,.3,1);
+  will-change: transform, opacity;
+}
+.story-h.reveal.in .story-word { opacity: 1; transform: translateY(0); }
+.story-h.reveal.in .story-word:nth-child(1)  { transition-delay: 0.05s; }
+.story-h.reveal.in .story-word:nth-child(2)  { transition-delay: 0.14s; }
+.story-h.reveal.in .story-word:nth-child(3)  { transition-delay: 0.23s; }
+.story-h.reveal.in .story-word:nth-child(4)  { transition-delay: 0.32s; }
+.story-h.reveal.in .story-word:nth-child(5)  { transition-delay: 0.41s; }
+.story-h.reveal.in .story-word:nth-child(6)  { transition-delay: 0.50s; }
+.story-h.reveal.in .story-word:nth-child(7)  { transition-delay: 0.59s; }
+.story-h.reveal.in .story-word:nth-child(8)  { transition-delay: 0.68s; }
+.story-h.reveal.in .story-word:nth-child(9)  { transition-delay: 0.77s; }
+.story-h.reveal.in .story-word:nth-child(10) { transition-delay: 0.86s; }
+.story-h.reveal.in .story-word:nth-child(11) { transition-delay: 0.95s; }
+.story-h.reveal.in .story-word:nth-child(12) { transition-delay: 1.04s; }
+
+/* The flourish draws itself in (stroke-dashoffset trick) */
+.story-flourish {
+  display: block;
+}
+.story-flourish path,
+.story-flourish circle {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  transition: stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1);
+}
+.story-flourish.reveal.in path,
+.story-flourish.reveal.in circle {
+  stroke-dashoffset: 0;
+}
+
 /* ========== HERO — translucent logo over video ========== */
 .hero-badge {
   opacity: 0;
