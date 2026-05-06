@@ -39,7 +39,8 @@ export default function Services() {
             return (
               <li
                 key={s.code}
-                className={`chalk-row reveal ${isOpen ? "is-open" : ""}`}
+                className="chalk-row reveal"
+                data-open={isOpen ? "true" : "false"}
                 data-delay={i * 70}
               >
                 <button

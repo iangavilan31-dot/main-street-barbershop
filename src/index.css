@@ -344,7 +344,7 @@ button { font-family: inherit; }
   -webkit-tap-highlight-color: transparent;
 }
 .chalk-row-btn:hover { background: rgba(244, 236, 217, 0.04); }
-.chalk-row.is-open .chalk-row-btn { background: rgba(244, 236, 217, 0.06); }
+.chalk-row[data-open="true"] .chalk-row-btn { background: rgba(244, 236, 217, 0.06); }
 .chalk-row-btn:focus-visible { background: rgba(244, 236, 217, 0.06); }
 /* Lock row text — no state should ever recolor or hide the spans */
 .chalk-row-btn .chalk-num,
@@ -395,14 +395,14 @@ button { font-family: inherit; }
   transition: transform 0.5s cubic-bezier(.16,1,.3,1), color 0.3s ease;
 }
 .chalk-row-btn:hover .chalk-arrow { color: var(--chalk-mut); }
-.chalk-row.is-open .chalk-arrow { transform: rotate(180deg); color: var(--chalk); }
+.chalk-row[data-open="true"] .chalk-arrow { transform: rotate(180deg); color: var(--chalk); }
 
 .chalk-detail {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.6s cubic-bezier(.16,1,.3,1);
 }
-.chalk-row.is-open .chalk-detail {
+.chalk-row[data-open="true"] .chalk-detail {
   max-height: 360px; /* generous; no description copy is anywhere near this tall */
 }
 .chalk-detail-inner {
@@ -413,7 +413,7 @@ button { font-family: inherit; }
               transform 0.5s cubic-bezier(.16,1,.3,1) 0.10s,
               padding 0.5s cubic-bezier(.16,1,.3,1);
 }
-.chalk-row.is-open .chalk-detail-inner {
+.chalk-row[data-open="true"] .chalk-detail-inner {
   opacity: 1;
   transform: translateY(0);
   padding: 0 0.5rem 1.5rem;
