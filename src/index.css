@@ -269,35 +269,196 @@ button { font-family: inherit; }
   text-transform: uppercase;
 }
 
-/* ========== MENU STAGE — real charcoal plaster wall + fog ========== */
-.menu-stage {
-  background-color: #0a0a0c;
-  background-image: url("/texture-stone.jpg");
+/* ========== CHALKBOARD MENU ========== */
+:root {
+  --chalk: #f4ecd9;
+  --chalk-mut: rgba(244, 236, 217, 0.62);
+  --chalk-faint: rgba(244, 236, 217, 0.28);
+}
+.text-chalk { color: var(--chalk); }
+.text-chalk\/55 { color: rgba(244, 236, 217, 0.55); }
+.text-chalk\/45 { color: rgba(244, 236, 217, 0.45); }
+
+.chalkboard {
+  background-color: #0a0a0a;
+  background-image: url("/texture-chalkboard.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   isolation: isolate;
 }
-.menu-stage::before {
-  /* Light cinematic fractal grain layered on top of the photo texture */
+.chalkboard::before {
+  /* Subtle cinematic noise so the photo doesn't compress into bands */
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.65 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  opacity: 0.12;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.1;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
-.menu-stage::after {
-  /* Cool top spotlight + heavier bottom darkening so the wall has depth */
+.chalkboard::after {
+  /* Edge vignette so it reads like a real board */
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 50% 0%, rgba(190, 200, 220, 0.12), transparent 65%),
-    radial-gradient(ellipse 90% 55% at 50% 100%, rgba(0,0,0,0.55), transparent 70%);
+    radial-gradient(ellipse 90% 65% at 50% 50%, transparent 35%, rgba(0,0,0,0.65) 100%);
   pointer-events: none;
+}
+
+.chalk-h {
+  text-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  letter-spacing: 0.005em;
+}
+
+.chalk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(244, 236, 217, 0.16);
+}
+.chalk-row {
+  border-bottom: 1px solid rgba(244, 236, 217, 0.16);
+  position: relative;
+}
+.chalk-row-btn {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 1.5rem 0.5rem;
+  cursor: pointer;
+  color: var(--chalk);
+  font-family: inherit;
+  text-align: left;
+  transition: background 0.4s cubic-bezier(.16,1,.3,1);
+}
+.chalk-row-btn:hover { background: rgba(244, 236, 217, 0.04); }
+.chalk-row.is-open .chalk-row-btn { background: rgba(244, 236, 217, 0.06); }
+
+.chalk-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--chalk-mut);
+  width: 3ch;
+}
+.chalk-name {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: var(--chalk);
+  text-shadow: 0 0 0.4px rgba(244, 236, 217, 0.55);
+}
+.chalk-dots {
+  flex: 1;
+  height: 1px;
+  align-self: center;
+  background-image: linear-gradient(to right, rgba(244, 236, 217, 0.32) 30%, transparent 0%);
+  background-size: 6px 1px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  opacity: 0.55;
+}
+.chalk-price {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1;
+  color: var(--chalk);
+  letter-spacing: -0.01em;
+}
+.chalk-arrow {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--chalk-faint);
+  transition: transform 0.5s cubic-bezier(.16,1,.3,1), color 0.3s ease;
+}
+.chalk-row-btn:hover .chalk-arrow { color: var(--chalk-mut); }
+.chalk-row.is-open .chalk-arrow { transform: rotate(180deg); color: var(--chalk); }
+
+.chalk-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(.16,1,.3,1);
+  overflow: hidden;
+}
+.chalk-row.is-open .chalk-detail { grid-template-rows: 1fr; }
+.chalk-detail-inner {
+  min-height: 0;
+  padding: 0 0.5rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s ease 0.05s, transform 0.5s cubic-bezier(.16,1,.3,1) 0.05s, padding 0.5s cubic-bezier(.16,1,.3,1);
+}
+.chalk-row.is-open .chalk-detail-inner {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 0 0.5rem 1.5rem;
+}
+
+.chalk-desc {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--chalk-mut);
+  max-width: 56ch;
+  margin-bottom: 1.1rem;
+}
+.chalk-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--chalk-mut);
+}
+.chalk-divider {
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--chalk-faint);
+}
+.chalk-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--chalk);
+  position: relative;
+  padding-bottom: 2px;
+}
+.chalk-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: rgba(244, 236, 217, 0.55);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(.16,1,.3,1);
+}
+.chalk-link:hover::after { transform: scaleX(0); transform-origin: left; }
+
+@media (max-width: 540px) {
+  .chalk-row-btn {
+    grid-template-columns: auto 1fr auto auto;
+    gap: 1rem;
+    padding: 1.25rem 0.25rem;
+  }
+  .chalk-dots { display: none; }
 }
 
 /* Card podium wrapper — holds card, base, and fog stack */
@@ -584,6 +745,60 @@ button { font-family: inherit; }
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: rgba(239, 233, 221, 0.45);
+}
+
+/* ========== TEAM — placeholder portraits rising from below ========== */
+.barber-card {
+  position: relative;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(96px);
+  transition: opacity 1.2s cubic-bezier(.16,1,.3,1),
+              transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.barber-card.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.barber-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: #0c0c0d;
+  overflow: hidden;
+  border: 1px solid rgba(239, 233, 221, 0.08);
+  transition: border-color 0.5s cubic-bezier(.16,1,.3,1),
+              transform 0.7s cubic-bezier(.16,1,.3,1);
+}
+.barber-card:hover .barber-portrait {
+  border-color: rgba(239, 233, 221, 0.22);
+  transform: translateY(-4px);
+}
+.barber-portrait-mark {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: rgba(239, 233, 221, 0.55);
+}
+.barber-meta { padding: 14px 2px 0; }
+.barber-name {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #EFE9DD;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+}
+.barber-role {
+  margin-top: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 221, 0.55);
 }
 
 /* ========== STORY — per-word stagger w/ light dim-up + flourish draw ========== */

@@ -1,13 +1,6 @@
 import { TEAM } from "../lib/data";
 import { useI18n } from "../lib/i18n";
 
-const PORTRAITS: Record<string, string> = {
-  Eddie: "https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=900&q=85&auto=format&fit=crop",
-  Marco: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=900&q=85&auto=format&fit=crop",
-  Luis: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=900&q=85&auto=format&fit=crop",
-  Tony: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&q=85&auto=format&fit=crop",
-};
-
 const ROLE_KEYS: Record<string, "rOwner" | "rSenior" | "rBarber" | "rApprentice"> = {
   "Master Barber · Owner": "rOwner",
   "Senior Barber": "rSenior",
@@ -15,63 +8,74 @@ const ROLE_KEYS: Record<string, "rOwner" | "rSenior" | "rBarber" | "rApprentice"
   "Apprentice": "rApprentice",
 };
 
+/**
+ * Team — "Meet the Barbers". Four cards rise from below the viewport
+ * when scrolled into view, with placeholder monogram art instead of
+ * stock portraits. Real photos drop in later by replacing the
+ * <PortraitPlaceholder /> with an <img />.
+ */
 export default function Team() {
   const { t } = useI18n();
   return (
-    <section id="team" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-14 items-end">
-          <div className="lg:col-span-7">
-            <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/65">
-              {t("teamEyebrow")}
-            </div>
-            <h2 className="mt-4 font-display font-light text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.25] tracking-tight reveal max-w-xl">
-              {t("teamHeading1")} {t("teamHeading2")}
-            </h2>
+    <section
+      id="team"
+      className="relative w-full bg-ink py-24 lg:py-32 overflow-hidden"
+    >
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="text-center mb-16 lg:mb-20">
+          <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55 reveal">
+            {t("teamEyebrow")}
           </div>
-          <div className="lg:col-span-4 lg:col-start-9">
-            <p className="text-bone/65 text-[13.5px] leading-[1.75] reveal" data-delay="200">
-              {t("teamBlurb")}
-            </p>
-          </div>
+          <h2 className="mt-4 font-display font-light text-bone-100 text-[clamp(1.5rem,2.6vw,2.1rem)] leading-[1.2] tracking-tight reveal" data-delay="80">
+            Meet the barbers.
+          </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {TEAM.map((m, i) => (
-            <article key={m.name} className="group reveal" data-delay={i * 100}>
-              <div className="relative aspect-[3/4] overflow-hidden bg-ink-700">
-                <img
-                  src={PORTRAITS[m.name]}
-                  alt={m.name}
-                  className="w-full h-full object-cover grayscale contrast-[1.06] scale-[1.03] group-hover:scale-100 transition-all duration-[1100ms] cubic-bezier(.16,1,.3,1)"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent"></div>
-                <div className="absolute top-3 left-3 right-3 flex items-start justify-between font-mono text-[10px] uppercase tracking-widestest text-bone/85">
-                  <span>0{i + 1}</span>
-                  <span>{m.years} {t("yrs")}</span>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="font-display text-bone-100 text-[20px] leading-none tracking-tight">
-                    {m.name}
-                  </div>
-                  <div className="font-mono text-[10px] uppercase tracking-widestest text-bone/65 mt-1.5">
-                    {t(ROLE_KEYS[m.role])}
-                  </div>
-                </div>
+            <article
+              key={m.name}
+              className="barber-card reveal"
+              data-delay={i * 130}
+            >
+              <PortraitPlaceholder name={m.name} index={i} />
+              <div className="barber-meta">
+                <div className="barber-name">{m.name}</div>
+                <div className="barber-role">{t(ROLE_KEYS[m.role])}</div>
               </div>
-              <p className="mt-4 text-bone/65 text-[13px] leading-[1.65] text-pretty">
-                {m.bio}
-              </p>
-              <a href="#visit" className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widestest text-bone/85 hover:text-bone underline-link">
-                {t("bookWith")} {m.name}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </a>
             </article>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function PortraitPlaceholder({ name, index }: { name: string; index: number }) {
+  const initial = name.charAt(0).toUpperCase();
+  return (
+    <div className="barber-portrait" aria-label={`${name} placeholder`}>
+      <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 w-full h-full">
+        <defs>
+          <linearGradient id={`p-${index}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#1a1a1c" />
+            <stop offset="100%" stopColor="#0c0c0d" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="250" fill={`url(#p-${index})`} />
+        <text
+          x="100" y="145" textAnchor="middle"
+          fontFamily='"Inter Tight", sans-serif'
+          fontSize="120" fontWeight="200"
+          fill="rgba(239, 233, 221, 0.10)"
+          letterSpacing="-4"
+        >
+          {initial}
+        </text>
+      </svg>
+      <div className="barber-portrait-mark">
+        <span>0{index + 1}</span>
+      </div>
+    </div>
   );
 }
