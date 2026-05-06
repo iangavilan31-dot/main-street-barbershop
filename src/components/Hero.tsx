@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
+import LangSwitch from "./LangSwitch";
 
 /**
  * Hero. Just the video + a translucent logo overlay.
@@ -90,6 +91,13 @@ export default function Hero() {
       <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-6">
         <div className="hero-badge w-[clamp(280px,46vw,640px)] select-none pointer-events-none">
           <Logo />
+        </div>
+      </div>
+
+      {/* Bottom EN/ES toggle */}
+      <div className="hero-lang absolute bottom-8 left-0 right-0 z-20 flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <LangSwitch tone="dark" />
         </div>
       </div>
     </section>
