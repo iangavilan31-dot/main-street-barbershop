@@ -12,7 +12,6 @@ function replayLoading(e: React.MouseEvent) {
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [light, setLight] = useState(false);
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
 
@@ -25,39 +24,30 @@ export default function Nav() {
   };
 
   useEffect(() => {
-    const lightSelector = "section.bg-bone-100, footer.bg-bone-100";
-    const onScroll = () => {
-      setScrolled(window.scrollY > 24);
-      // Detect if a light section sits under the nav (top 80px)
-      const probeY = 56;
-      const elements = document.elementsFromPoint(window.innerWidth / 2, probeY);
-      const overLight = elements.some((el) => (el as HTMLElement).matches?.(lightSelector) || (el as HTMLElement).closest?.(lightSelector));
-      setLight(Boolean(overLight));
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? `py-3 backdrop-blur-md ${light ? "bg-bone-100/90 border-b border-ink/10" : "bg-ink/85 border-b border-bone/10"}`
-          : "py-6"
+          ? "py-3 bg-ink/85 backdrop-blur-md border-b border-bone/10"
+          : "py-6 bg-ink/40 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-[1500px] mx-auto px-6 lg:px-10 grid grid-cols-[1fr_auto_1fr] items-center gap-6">
         <a href="#top" onClick={replayLoading} className="flex items-center gap-3 group cursor-pointer">
           <span className="block w-[58px] h-[31px] sm:w-[72px] sm:h-[38px] transition-transform duration-500 group-hover:scale-[1.04]">
-            <Logo inverted={light} />
+            <Logo />
           </span>
           <span className="hidden sm:flex flex-col leading-none">
-            <span className={`font-display text-[14px] tracking-tight ${light ? "text-ink" : "text-bone-100"}`}>
+            <span className="font-display text-[14px] tracking-tight text-bone-100">
               Main St.
             </span>
-            <span className={`text-[9px] tracking-widestest uppercase font-mono mt-1 ${light ? "text-ink/55" : "text-bone/50"}`}>
+            <span className="text-[9px] tracking-widestest uppercase font-mono mt-1 text-bone/50">
               Barbershop · Est. {SHOP.est}
             </span>
           </span>
@@ -68,7 +58,7 @@ export default function Nav() {
             <a
               key={item.href}
               href={item.href}
-              className={`underline-link text-[11px] font-mono uppercase tracking-widestest transition ${light ? "text-ink/80 hover:text-ink" : "text-bone/80 hover:text-bone"}`}
+              className="underline-link text-[11px] font-mono uppercase tracking-widestest transition text-bone/80 hover:text-bone"
             >
               {t(NAV_LABELS[item.href])}
             </a>
@@ -76,35 +66,26 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
-          <LangSwitch tone={light ? "light" : "dark"} />
+          <LangSwitch tone="dark" />
           <a
             href={SHOP.phoneHref}
-            className={`hidden xl:inline-block text-[11px] font-mono uppercase tracking-widestest underline-link ${light ? "text-ink/65 hover:text-ink" : "text-bone/65 hover:text-bone"}`}
+            className="hidden xl:inline-block text-[11px] font-mono uppercase tracking-widestest underline-link text-bone/65 hover:text-bone"
           >
             {SHOP.phone}
           </a>
-          {light ? (
-            <a href="#visit" className="btn-light !py-3 !px-5 text-[11px]">
-              <span>{t("bookChair")}</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </a>
-          ) : (
-            <a href="#visit" className="btn-primary !py-3 !px-5 text-[11px]">
-              <span>{t("bookChair")}</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </a>
-          )}
+          <a href="#visit" className="btn-primary !py-3 !px-5 text-[11px]">
+            <span>{t("bookChair")}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
           <button
             aria-label="Menu"
             onClick={() => setOpen(!open)}
-            className={`lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 border ${light ? "border-ink/20" : "border-bone/20"}`}
+            className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 border border-bone/20"
           >
-            <span className={`w-4 h-px transition ${light ? "bg-ink" : "bg-bone"} ${open ? "rotate-45 translate-y-1" : ""}`} />
-            <span className={`w-4 h-px transition ${light ? "bg-ink" : "bg-bone"} ${open ? "-rotate-45 -translate-y-0.5" : ""}`} />
+            <span className={`w-4 h-px bg-bone transition ${open ? "rotate-45 translate-y-1" : ""}`} />
+            <span className={`w-4 h-px bg-bone transition ${open ? "-rotate-45 -translate-y-0.5" : ""}`} />
           </button>
         </div>
       </div>
