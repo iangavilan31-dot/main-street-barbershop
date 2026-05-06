@@ -8,16 +8,16 @@ import { useI18n } from "../lib/i18n";
 export default function Story() {
   const { t } = useI18n();
   return (
-    <section id="story" className="relative w-full bg-ink py-28 lg:py-40 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55 mb-12 reveal">
+    <section id="story" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
+      <div className="max-w-[1180px] mx-auto px-6 lg:px-10">
+        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55 mb-10 reveal">
           {t("storyEyebrow")}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Image */}
-          <div className="lg:col-span-7 reveal">
-            <div className="relative aspect-[4/3] overflow-hidden bg-ink-700">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Image — slimmer column, no longer half page */}
+          <div className="lg:col-span-5 reveal">
+            <div className="relative aspect-[4/5] overflow-hidden bg-ink-700">
               <img
                 src="/storefront.jpg"
                 alt="Main Street Barbershop, Bergenfield NJ"
@@ -26,9 +26,9 @@ export default function Story() {
             </div>
           </div>
 
-          {/* About copy — one font, no italic accent */}
-          <div className="lg:col-span-5 lg:pt-8">
-            <h2 className="font-display font-medium text-bone-100 text-[clamp(1.7rem,2.8vw,2.4rem)] leading-[1.15] tracking-tight reveal">
+          {/* About copy */}
+          <div className="lg:col-span-6 lg:col-start-7 lg:pt-4">
+            <h2 className="font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal">
               {t("storyHeadingPart1")} {t("storyShowingUp")} {t("storyHeadingPart2")}
             </h2>
 

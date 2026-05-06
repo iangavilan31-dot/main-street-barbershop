@@ -15,14 +15,14 @@ const TILES = [
 export default function Gallery() {
   const { t } = useI18n();
   return (
-    <section id="gallery" className="relative w-full bg-ink py-28 lg:py-40 overflow-hidden">
-      <div className="max-w-[1500px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-16 items-end">
+    <section id="gallery" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-12 gap-10 mb-12 items-end">
           <div className="lg:col-span-7">
             <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/65">
               {t("galleryEyebrow")}
             </div>
-            <h2 className="mt-5 font-display font-medium text-bone-100 text-[clamp(1.8rem,3.4vw,3.1rem)] leading-[1.05] tracking-tight reveal max-w-xl">
+            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
               {t("galleryHeading1")}{" "}
               <span className="italic font-normal text-bone/85" style={{ fontFamily: '"Instrument Serif", serif' }}>
                 {t("galleryHeading2")}
@@ -43,7 +43,7 @@ export default function Gallery() {
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[230px] gap-3 lg:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] md:auto-rows-[180px] gap-3 lg:gap-4">
           {TILES.map((tile, i) => (
             <a
               key={i}

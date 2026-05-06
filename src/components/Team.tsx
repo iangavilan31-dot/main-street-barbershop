@@ -18,14 +18,14 @@ const ROLE_KEYS: Record<string, "rOwner" | "rSenior" | "rBarber" | "rApprentice"
 export default function Team() {
   const { t } = useI18n();
   return (
-    <section id="team" className="relative w-full bg-ink py-28 lg:py-40 overflow-hidden">
-      <div className="max-w-[1500px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-20 items-end">
+    <section id="team" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-12 gap-10 mb-14 items-end">
           <div className="lg:col-span-7">
             <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/65">
               {t("teamEyebrow")}
             </div>
-            <h2 className="mt-5 font-display font-medium text-bone-100 text-[clamp(1.8rem,3.4vw,3.1rem)] leading-[1.05] tracking-tight reveal max-w-xl">
+            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
               {t("teamHeading1")}{" "}
               <span className="italic font-normal text-bone/85" style={{ fontFamily: '"Instrument Serif", serif' }}>
                 {t("teamHeading2")}
@@ -42,27 +42,27 @@ export default function Team() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {TEAM.map((m, i) => (
             <article key={m.name} className="group reveal" data-delay={i * 100}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-ink-700">
+              <div className="relative aspect-[3/4] overflow-hidden bg-ink-700">
                 <img
                   src={PORTRAITS[m.name]}
                   alt={m.name}
                   className="w-full h-full object-cover grayscale contrast-[1.06] scale-[1.03] group-hover:scale-100 transition-all duration-[1100ms] cubic-bezier(.16,1,.3,1)"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent"></div>
-                <div className="absolute top-4 left-4 right-4 flex items-start justify-between font-mono text-[10px] uppercase tracking-widestest text-bone/85">
+                <div className="absolute top-3 left-3 right-3 flex items-start justify-between font-mono text-[10px] uppercase tracking-widestest text-bone/85">
                   <span>0{i + 1}</span>
                   <span>{m.years} {t("yrs")}</span>
                 </div>
-                <div className="absolute bottom-5 left-5 right-5">
-                  <div className="font-display text-bone-100 text-[36px] leading-none tracking-tightest">
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="font-display text-bone-100 text-[20px] leading-none tracking-tight">
                     {m.name}
                   </div>
-                  <div className="font-mono text-[10px] uppercase tracking-widestest text-bone/65 mt-2">
+                  <div className="font-mono text-[10px] uppercase tracking-widestest text-bone/65 mt-1.5">
                     {t(ROLE_KEYS[m.role])}
                   </div>
                 </div>
               </div>
-              <p className="mt-5 text-bone/65 text-[14px] leading-[1.65] text-pretty">
+              <p className="mt-4 text-bone/65 text-[13px] leading-[1.65] text-pretty">
                 {m.bio}
               </p>
               <a href="#visit" className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widestest text-bone/85 hover:text-bone underline-link">

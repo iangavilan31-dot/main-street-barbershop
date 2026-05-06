@@ -17,14 +17,14 @@ export default function Visit() {
   };
   const lang = (typeof window !== "undefined" ? document.documentElement.lang : "en") === "es" ? "ES" : "EN";
   return (
-    <section id="visit" className="relative w-full bg-ink py-28 lg:py-40 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-20 items-end">
+    <section id="visit" className="relative w-full bg-ink py-20 lg:py-28 overflow-hidden">
+      <div className="max-w-[1180px] mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-12 gap-10 mb-14 items-end">
           <div className="lg:col-span-7">
             <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/65">
               {t("visitEyebrow")}
             </div>
-            <h2 className="mt-5 font-display font-medium text-bone-100 text-[clamp(1.8rem,3.4vw,3.1rem)] leading-[1.05] tracking-tight reveal max-w-xl">
+            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
               {t("visitHeading1")}{" "}
               <span className="italic font-normal text-bone/85" style={{ fontFamily: '"Instrument Serif", serif' }}>
                 {t("visitHeading2")}
@@ -40,7 +40,7 @@ export default function Visit() {
 
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Map */}
-          <div className="lg:col-span-7 aspect-[16/12] lg:aspect-auto lg:min-h-[560px] relative overflow-hidden border border-bone/10 reveal">
+          <div className="lg:col-span-6 aspect-[16/10] lg:aspect-auto lg:min-h-[420px] relative overflow-hidden border border-bone/10 reveal">
             <iframe
               title="Main Street Barbershop on the map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=-74.011%2C40.924%2C-73.991%2C40.932&layer=mapnik&marker=40.9276%2C-74.0007"
@@ -73,7 +73,7 @@ export default function Visit() {
           </div>
 
           {/* Info column */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-5">
             {/* Hours card */}
             <div className="border border-bone/10 p-7 lg:p-8 reveal">
               <div className="flex items-center justify-between mb-5">
@@ -102,7 +102,7 @@ export default function Visit() {
               <div className="font-mono text-[10px] uppercase tracking-widestest text-bone/65 mb-5">
                 {t("reservations")}
               </div>
-              <a href={SHOP.phoneHref} className="block font-display font-medium text-[26px] lg:text-[32px] leading-none text-bone-100 hover:opacity-70 transition tracking-tight">
+              <a href={SHOP.phoneHref} className="block font-display font-medium text-[20px] lg:text-[24px] leading-none text-bone-100 hover:opacity-70 transition tracking-tight">
                 {SHOP.phone}
               </a>
               <p className="text-bone/60 text-[13px] mt-3 leading-[1.7]">

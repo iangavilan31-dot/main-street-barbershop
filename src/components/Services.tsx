@@ -18,15 +18,15 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="cork-board relative w-full text-bone py-28 lg:py-40 overflow-hidden">
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+    <section id="services" className="cork-board relative w-full text-bone py-20 lg:py-28 overflow-hidden">
+      <div className="relative z-10 max-w-[1180px] mx-auto px-6 lg:px-10">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-10 mb-14 lg:mb-20 items-end">
+        <div className="grid lg:grid-cols-12 gap-10 mb-12 lg:mb-16 items-end">
           <div className="lg:col-span-7">
             <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/55">
               {t("servicesEyebrow")}
             </div>
-            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[1.1] tracking-tight reveal max-w-xl">
+            <h2 className="mt-4 font-display font-medium text-bone-100 text-[clamp(1.25rem,1.9vw,1.7rem)] leading-[1.2] tracking-tight reveal max-w-xl">
               {t("servicesHeading")}{t("servicesItalic")}
             </h2>
           </div>
