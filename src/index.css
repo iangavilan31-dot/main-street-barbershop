@@ -1116,3 +1116,93 @@ section#top.hero-in .hero-lang {
     rgba(10, 10, 10, 0.85) 100%);
 }
 
+/* ========== STORY — atmospheric blurred scene ========== */
+.story-scene {
+  background: var(--ink);
+}
+.story-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.story-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(32px) grayscale(1) brightness(0.22);
+  transform: scale(1.08);
+}
+.story-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(13,14,16,0.82) 0%,
+      rgba(13,14,16,0.55) 45%,
+      rgba(13,14,16,0.82) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%);
+}
+
+/* ========== GALLERY — editorial masonry grid ========== */
+.editorial-tile {
+  position: relative;
+  overflow: hidden;
+  background: #0c0c0d;
+}
+.editorial-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.04) brightness(0.88);
+  transform: scale(1.03);
+  transition: transform 1.1s cubic-bezier(.16,1,.3,1), filter 0.8s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+.editorial-tile:hover .editorial-img {
+  transform: scale(1.0);
+  filter: grayscale(0.7) contrast(1.02) brightness(0.92);
+}
+.editorial-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.1rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(.16,1,.3,1);
+}
+.editorial-tile:hover .editorial-caption { opacity: 1; }
+
+/* ========== TEAM — staggered portraits ========== */
+.barber-portrait {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background: #0e0f11;
+  overflow: hidden;
+  transition: opacity 0.6s cubic-bezier(.16,1,.3,1);
+}
+.barber-card:hover .barber-portrait { opacity: 0.88; }
+
+@media (min-width: 1024px) {
+  .barber-stagger-1 { margin-top: 88px; }
+  .barber-stagger-2 { margin-top: 44px; }
+  .barber-stagger-3 { margin-top: 132px; }
+}
+
+/* ========== VISIT — full-bleed map ========== */
+.visit-map-wrap {
+  aspect-ratio: 16 / 7;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .visit-map-wrap { aspect-ratio: 4 / 3; }
+}
+
+/* ========== CONTACT — statement link style ========== */
+.contact-link {
+  display: block;
+}
+
