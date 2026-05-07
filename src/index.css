@@ -295,12 +295,12 @@ button { font-family: inherit; }
 .text-chalk\/45 { color: rgba(244, 236, 217, 0.45); }
 
 .chalkboard {
-  background-color: #141c18;
+  background-color: #080c0a;
   background-image:
-    /* Edge vignette — corners stay near-black, center lets the board breathe */
-    radial-gradient(ellipse 80% 68% at 50% 50%, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.82) 100%),
-    /* Chalkboard green-black tint so texture reads as a real board */
-    linear-gradient(160deg, rgba(18,26,22,0.42) 0%, rgba(10,16,14,0.52) 100%),
+    /* Deep vignette — keeps corners in near-black */
+    radial-gradient(ellipse 75% 62% at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.92) 100%),
+    /* Heavy chalkboard-green tint — darker overall */
+    linear-gradient(160deg, rgba(8,13,10,0.72) 0%, rgba(5,8,7,0.80) 100%),
     url("/texture-chalkboard.jpg");
   background-size: cover, cover, cover;
   background-position: center, center, center;
@@ -396,18 +396,17 @@ button { font-family: inherit; }
   width: 3ch;
 }
 .chalk-name {
-  font-family: "Inter Tight", sans-serif;
+  font-family: "Roboto Slab", serif;
   font-weight: 300;
-  font-size: clamp(20px, 2.6vw, 30px);
+  font-size: clamp(17px, 2.2vw, 26px);
   line-height: 1;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--chalk);
   text-shadow:
-    0 0 0.4px rgba(244,236,217,0.55),
-    0 0 14px rgba(244,236,217,0.12),
-    1px 0 0 rgba(244,236,217,0.07),
-    -1px 0 0 rgba(244,236,217,0.07),
-    0 1px 0 rgba(244,236,217,0.05);
+    0 0 8px rgba(244,236,217,0.18),
+    1px 0 0 rgba(244,236,217,0.06),
+    -1px 0 0 rgba(244,236,217,0.06);
 }
 .chalk-dots {
   flex: 1;
@@ -1206,3 +1205,26 @@ section#top.hero-in .hero-lang {
   display: block;
 }
 
+
+/* ========== STORY — line-mask cinematic reveal ========== */
+.story-line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em; /* prevent descender clip */
+}
+.story-line-inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.story-h.reveal.in .story-line-inner {
+  transform: translateY(0);
+}
+
+/* ========== GALLERY — cinematic single-image frame ========== */
+.gallery-frame-cinema {
+  aspect-ratio: 16 / 9;
+}
+@media (max-width: 640px) {
+  .gallery-frame-cinema { aspect-ratio: 4 / 3; }
+}

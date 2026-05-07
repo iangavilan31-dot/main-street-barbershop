@@ -106,7 +106,7 @@ export const T: Dict = {
     ES: "Afeitada con toalla · Skin fades · Tapers clásicos · Esculpido de barba · Padre e hijo · Sin cita bienvenidos · Establecido 2004 · Bergenfield, NJ",
   },
   // Service names
-  s1: { EN: "Signature Cut", ES: "Corte Insignia" },
+  s1: { EN: "The Main Street Cut", ES: "El Corte de Main Street" },
   s2: { EN: "Skin Fade", ES: "Skin Fade" },
   s3: { EN: "Beard Sculpt", ES: "Esculpido de Barba" },
   s4: { EN: "Hot Towel Shave", ES: "Afeitada con Toalla" },

@@ -7,9 +7,11 @@ const BG =
 export default function Story() {
   const { t } = useI18n();
 
-  const headingWords = `${t("storyHeadingPart1")} ${t("storyShowingUp")} ${t("storyHeadingPart2")}`
-    .split(" ")
-    .filter(Boolean);
+  const lines = [
+    t("storyHeadingPart1"),
+    t("storyShowingUp"),
+    t("storyHeadingPart2"),
+  ];
 
   return (
     <section id="story" className="story-scene relative w-full overflow-hidden">
@@ -18,27 +20,30 @@ export default function Story() {
       </div>
       <div className="story-veil" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-[900px] mx-auto px-6 lg:px-10 py-44 lg:py-64 text-center">
-        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/45 reveal">
+      <div className="relative z-10 max-w-[940px] mx-auto px-6 lg:px-10 py-44 lg:py-64 text-center">
+        <div className="font-mono text-[11px] uppercase tracking-widestest text-bone/40 reveal">
           {t("storyEyebrow")}
         </div>
 
-        <h2 className="story-h reveal mt-10 font-editorial italic text-bone-100 leading-[1.05] tracking-tight text-[clamp(2.8rem,6.5vw,5.8rem)]">
-          {headingWords.map((w, i) => (
-            <span key={i} className="story-word inline-block">
-              {w}{i < headingWords.length - 1 ? " " : ""}
+        {/* Line-by-line cinematic reveal — no italic, clean display weight */}
+        <h2 className="story-h reveal mt-10 text-bone-100 leading-[1.12] tracking-[-0.01em] text-[clamp(2.4rem,5.8vw,5.4rem)]">
+          {lines.map((line, i) => (
+            <span key={i} className="story-line-mask">
+              <span className="story-line-inner font-display font-extralight" style={{ transitionDelay: `${i * 140}ms` }}>
+                {line}
+              </span>
             </span>
           ))}
         </h2>
 
         <Flourish
-          className="story-flourish reveal mx-auto mt-16 w-[130px] text-bone/20"
-          data-delay="350"
+          className="story-flourish reveal mx-auto mt-16 w-[120px] text-bone/18"
+          data-delay="480"
         />
 
         <div
           className="reveal mt-20 flex items-start justify-center gap-16 sm:gap-24 lg:gap-32"
-          data-delay="600"
+          data-delay="620"
         >
           {[
             { n: "21", l: "Years" },
@@ -46,10 +51,10 @@ export default function Story() {
             { n: "04", l: "Chairs" },
           ].map(({ n, l }) => (
             <div key={l} className="flex flex-col items-center gap-3">
-              <span className="font-editorial text-bone-100 text-[clamp(2.8rem,5vw,4.8rem)] font-light leading-none tracking-tight">
+              <span className="font-display font-extralight text-bone-100 text-[clamp(2.6rem,4.8vw,4.4rem)] leading-none tracking-tight">
                 {n}
               </span>
-              <span className="font-mono text-[9px] uppercase tracking-widestest text-bone/35">
+              <span className="font-mono text-[9px] uppercase tracking-widestest text-bone/32">
                 {l}
               </span>
             </div>
